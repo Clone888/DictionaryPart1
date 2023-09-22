@@ -5,6 +5,7 @@ string[] list = File.ReadAllLines("../../../Husdjur.csv");
 Dictionary<string, int> animal = new Dictionary<string, int>();
 
 List<int> petAge = new List<int>(); // Skapar listan 'petAge'
+List<string> names = new List<string>(); // Namnen
 
 foreach (string line in list)
 {
@@ -15,6 +16,7 @@ foreach (string line in list)
         string petName = split[0].ToLower();
         animal.Add(petName, age);   // Lägger till 'petName' och 'age' i dictionary 'animal'
         petAge.Add(age);    // Lägger till 'age' i listan 'petAge'
+        names.Add(petName);
     }
     else
     {
@@ -25,7 +27,6 @@ foreach (string line in list)
 //petAge.Sort(); // Funkar att sortera här, men hur göra med en 'for'-loop?
 
 
-
 for (int i = 0; i < petAge.ToArray().Length; i++)
 {
     for (int j = 0; j < petAge.ToArray().Length - 1; j++)
@@ -34,22 +35,30 @@ for (int i = 0; i < petAge.ToArray().Length; i++)
         int first = petAge[j];
         int second = petAge[j + 1];
 
+        string name1 = names[j];
+        string name2 = names[j + 1];
+
         if (first > second)
         {
             petAge[j] = second;     
-            petAge[j + 1] = first;              
+            petAge[j + 1] = first; 
+            
+            names[j] = name2;
+            names[j + 1] = name1;
+
         }
     }
 }
 
+List<string> results = new List<string>();
 
 
-foreach (int line in petAge)
+for (int i =  0 ; i < petAge.Count ; i++)      // Börja räkna bakifrån
 {
-    Console.Write(line + ", ");
+    results.Add(names[i] + "," + petAge[i]);
 }
 
-//File.WriteAllLines("../../../sorteradeDjur.txt"); // Använda hur????
+File.WriteAllLines("../../../sorteradeDjur.txt" , results); // Använda hur????
 
 
 /*

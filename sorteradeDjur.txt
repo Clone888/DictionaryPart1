@@ -1,0 +1,9 @@
+dino,1
+ba,2
+micha,6
+milo,7
+kickan,8
+ricky,9
+kalle,15
+benny,35
+lollo,62
